@@ -1,4 +1,4 @@
-package datastructures.arryas;
+package DataStructures.Arrays;
 
 /**
  * 

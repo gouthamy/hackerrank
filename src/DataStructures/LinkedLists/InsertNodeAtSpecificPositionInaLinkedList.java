@@ -1,6 +1,5 @@
-package datastructures.LinkedLists;
+package DataStructures.LinkedLists;
 
-import datastructures.LinkedLists.InsertNodeAtTheHeadOfaLinkedList.Node;
 
 /**
  * 
