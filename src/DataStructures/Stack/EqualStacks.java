@@ -1,6 +1,7 @@
 package DataStructures.Stack;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
  * 
@@ -50,23 +51,61 @@ All three stacks now have . Thus, we print  as our answer.
  */
 public class EqualStacks {
 	public static void main(String[] args) {
-		
+
 		Scanner in = new Scanner(System.in);
 		int n1 = in.nextInt();
 		int n2 = in.nextInt();
 		int n3 = in.nextInt();
+
+		int n1_height = 0;
 		int h1[] = new int[n1];
 		for(int h1_i=0; h1_i < n1; h1_i++){
 			h1[h1_i] = in.nextInt();
+			n1_height += h1[h1_i];
 		}
+
+		int n2_height = 0;
 		int h2[] = new int[n2];
 		for(int h2_i=0; h2_i < n2; h2_i++){
-			h2[h2_i] = in.nextInt();
+			h2[h2_i]  = in.nextInt();
+			n2_height += h2[h2_i] ;
 		}
+
+		int n3_height = 0;
 		int h3[] = new int[n3];
 		for(int h3_i=0; h3_i < n3; h3_i++){
 			h3[h3_i] = in.nextInt();
+			n3_height += h3[h3_i];
 		}
+
+		int h1_index = 0;
+		int h2_index = 0;
+		int h3_index = 0;
+		int max_height;
+		
+		while(true){
+			if( (n1_height > n2_height) && (n1_height > n3_height)){
+				n1_height -=  h1[h1_index++];
+			}
+			if((n2_height > n1_height) && (n2_height > n3_height)){
+				n2_height -= h2[h2_index++];
+			}
+			if((n3_height > n1_height)&&(n3_height > n2_height)){
+				n3_height -= h3[h3_index++];
+			}
+			
+			if((n1_height == n2_height) &&( n1_height == n3_height)){
+				max_height = n1_height;
+				break;
+			}
+			if(h1_index == n1 || h2_index == n2 || h3_index == n3){
+				max_height = 0;
+				break;
+			}
+		}
+		System.out.println(max_height);
+
+
 	}
 
 }

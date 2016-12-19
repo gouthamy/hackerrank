@@ -1,5 +1,7 @@
 package DataStructures.Arrays;
 
+import java.util.Scanner;
+
 /**
  * 
  * @author goutham
@@ -72,5 +74,51 @@ The hourglass with the maximum sum () is:
 1 2 4
  */
 public class TwoDArrayDS {
+	
+	public static void main(String[] args){
+		
+		int[][] arr = new int[6][6];
+		Scanner scan = new Scanner(System.in);
+		for(int i=0; i<6;i++){
+			for(int j=0;j<6;j++){
+				arr[i][j] = scan.nextInt();
+			}
+		}
+		int maxHourGlassSum = 0;
+		for(int i=0; i <4;i++){
+			for(int j=0;j<4;j++){
+				int hourGlassSum = hourGlassSum(arr,i,j);
+				if(maxHourGlassSum < hourGlassSum)
+					maxHourGlassSum = hourGlassSum;
+			}
+		}
+		System.out.println(maxHourGlassSum);
+		
+		
+	}
+
+	private static int hourGlassSum(int[][] arr,int i, int j) {
+		// TODO Auto-generated method stub
+		//System.out.printlnx("i" +i+" ,j"+j);
+		int sum = 0;
+		
+		for(int y=j;y<(j+3);y++){
+			sum += arr[i][y];
+		}
+		i++;
+		sum+=arr[i][j+1];
+		i++;
+		for(int y=j;y<(j+3);y++){
+			sum += arr[i][y];
+		}
+		/*for(int x=i;x<i+3;x++){
+			for(int y=j;y<j+3;y++){
+				System.out.print(arr[x][y]+" ");
+			}
+			System.out.println();
+		}*/
+		
+		return sum;
+	}
 
 }
