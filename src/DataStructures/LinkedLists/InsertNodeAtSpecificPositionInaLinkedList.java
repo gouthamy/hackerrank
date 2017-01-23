@@ -45,10 +45,33 @@ public class InsertNodeAtSpecificPositionInaLinkedList {
 	}
 
 	Node InsertNth(Node head, int data, int position) {
-		// This is a "method-only" submission. 
-		// You only need to complete this method. 
-		
-		return null;
+
+		 Node newNode = new Node();
+		 newNode.data = data;
+		    
+		    // Special case: insert in the front
+		  if(position == 0) {
+		        newNode.next = head;
+		        return newNode;
+		    }
+		    
+		    // Other cases: found the node at position - 1
+		    //         newNode.next = Node(position -1).next
+		    //         Update Node(position -1).next = newNode
+		    Node cur = head;
+		    int curPos = 0;
+		    while(curPos != position - 1) {
+		        cur = cur.next;
+		        curPos += 1;
+		    }
+		    
+		    Node temp = cur.next;
+		    cur.next = newNode;
+		    newNode.next = temp;
+		    
+		    newNode.next = cur.next;
+		    cur.next = newNode;
+		    return head;
 	}
 
 }

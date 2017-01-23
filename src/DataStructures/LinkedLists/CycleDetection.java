@@ -36,5 +36,26 @@ The second list has a cycle, so we return true and the hidden code checker print
  *
  */
 public class CycleDetection {
-
+	class Node {
+		int data;
+		Node next;
+	}
+	
+	boolean hasCycle(Node head) {
+		if(head==null)return false;
+		//slow pointer
+		Node pt1 = head;
+		//fast pointer
+		Node pt2 = head;
+		
+		while(pt1.next!=null){
+			pt1 = pt1.next;
+			pt2 = pt2.next.next;
+			if(pt1 == pt2){
+				return true;
+			}
+		}
+		return false;
+		
+	}
 }
