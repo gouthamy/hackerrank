@@ -59,44 +59,28 @@ public class MaximumSubarraySum {
 		  for(int q =0 ; q<quries; q++){
 			  int n = scan.nextInt();
 			  int m = scan.nextInt();
-			  int[] arr = new int[n];
+			  long[] arr = new long[n];
 			  for(int i=0; i< n ; i++){
-				  arr[i] = scan.nextInt();
+				  arr[i] = scan.nextInt()%7;
 			  }
 			  System.out.println(subarrySum(arr,n,m));
 		  }
 		  
 	    }
-
-	private static int subarrySum(int[] arr,int n, int m) {
-		int maxSum = 0;
-		for(int subArrayCount = 1; subArrayCount<= n ; subArrayCount++){
-			int sum = maxSum(arr,subArrayCount,m);
-			if(sum > maxSum)
-				maxSum = sum;
-		}
+	
+	  //3 3 9 9 5
+	private static long subarrySum(long[] arr, int n, int m) {
+	
+		if(arr.length==0)throw new IllegalArgumentException("given array is empty");
+		long maxSubArrayDivisble = arr[0];
+		long currentMaxDivisble = arr[0];
 		
-		return maxSum;
-	}
-
-	private static int maxSum(int[] arr, int subArrayCount, int m) {
-		int max = 0;
-		for(int i=0; i< arr.length; i++){
-			int value = 0;
-			
-			//add check point here
-			for(int s=0,j=i,c=0; s < subArrayCount && (c <= (arr.length/subArrayCount)); s++,j++,c++){
-				if(j < arr.length)
-					value = value + arr[j];
-				else
-					break;
-			}
-			
-			int sum = value % m;
-			if(max < sum)
-				max = sum;
+		for(int i=0; i<n; i++){
+			currentMaxDivisble = Math.max((currentMaxDivisble+arr[0])%7, arr[0]%7);
+			maxSubArrayDivisble = Math.max(currentMaxDivisble, maxSubArrayDivisble);
 		}
-		return max;
+		return maxSubArrayDivisble;
 	}
 
+	
 }
