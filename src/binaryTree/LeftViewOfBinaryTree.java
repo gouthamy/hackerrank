@@ -31,6 +31,8 @@ public class LeftViewOfBinaryTree {
 		tree.root.right = new Node(30);
 		tree.root.right.left = new Node(25);
 		tree.root.right.right = new Node(40);
+		
+		Integer n = new Integer(null);
 
 		tree.leftView();
 	}

@@ -1,5 +1,9 @@
 package ThirtyDayOfCode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 
 /**
  * Welcome to Day 18! Today we're learning about Stacks and Queues. Check out the Tutorial tab for learning materials and an instructional video!
@@ -37,19 +41,23 @@ The word, racecar, is a palindrome.
  *
  */
 public class QueuesAndStacks {
+	
+	Stack<Character> stack = new Stack<>();
+	Queue<Character> queue = new LinkedList<Character>();
+	
 	char dequeueCharacter(){
-		return 'f';
+		return queue.remove();
 	}
 	char popCharacter(){
-		return 'f';
+		return stack.pop();
 	}
 	
 	void enqueueCharacter(char ch){
-		
+		queue.add(ch);
 	}
 
 	void pushCharacter(char ch){
-		
+		stack.push(ch);
 	}
 	/**
 	 * @param args

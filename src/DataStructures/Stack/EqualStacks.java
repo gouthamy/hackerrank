@@ -50,62 +50,60 @@ As a result, the stacks undergo the following change in height:
 All three stacks now have . Thus, we print  as our answer.
  */
 public class EqualStacks {
-	public static void main(String[] args) {
 
+	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		int n1 = in.nextInt();
 		int n2 = in.nextInt();
 		int n3 = in.nextInt();
-
-		int n1_height = 0;
-		int h1[] = new int[n1];
+		Stack<Integer> h1 = new Stack<Integer>();
 		for(int h1_i=0; h1_i < n1; h1_i++){
-			h1[h1_i] = in.nextInt();
-			n1_height += h1[h1_i];
+			h1.push(in.nextInt());
 		}
-
-		int n2_height = 0;
-		int h2[] = new int[n2];
+		Stack<Integer> h2 = new Stack<Integer>();
 		for(int h2_i=0; h2_i < n2; h2_i++){
-			h2[h2_i]  = in.nextInt();
-			n2_height += h2[h2_i] ;
+			h2.push(in.nextInt());
 		}
-
-		int n3_height = 0;
-		int h3[] = new int[n3];
+		Stack<Integer> h3 = new Stack<Integer>();
 		for(int h3_i=0; h3_i < n3; h3_i++){
-			h3[h3_i] = in.nextInt();
-			n3_height += h3[h3_i];
+			h3.push(in.nextInt());
 		}
 
-		int h1_index = 0;
-		int h2_index = 0;
-		int h3_index = 0;
-		int max_height;
-		
-		while(true){
-			if( (n1_height > n2_height) && (n1_height > n3_height)){
-				n1_height -=  h1[h1_index++];
-			}
-			if((n2_height > n1_height) && (n2_height > n3_height)){
-				n2_height -= h2[h2_index++];
-			}
-			if((n3_height > n1_height)&&(n3_height > n2_height)){
-				n3_height -= h3[h3_index++];
-			}
-			
-			if((n1_height == n2_height) &&( n1_height == n3_height)){
-				max_height = n1_height;
-				break;
-			}
-			if(h1_index == n1 || h2_index == n2 || h3_index == n3){
-				max_height = 0;
-				break;
-			}
-		}
-		System.out.println(max_height);
-
-
+		System.out.println(equalHeight(h1, h2, h3));
 	}
 
+	private static int equalHeight(Stack<Integer> s1, Stack<Integer> s2,
+			Stack<Integer> s3) {
+		int s1Height = height(s1);
+		int s2Height = height(s2);
+		int s3Height = height(s3);
+
+		boolean isStackEqual = false;
+		while(!isStackEqual){
+			isStackEqual = false;
+			if(s1Height > s2Height && s1Height > s3Height && !s1.isEmpty()){
+				int pop = s1.remove(0);
+				s1Height -= pop;
+			}else if(s2Height > s1Height && s2Height > s3Height && !s2.isEmpty()){
+				int pop = s2.remove(0);
+				s2Height -= pop;
+			}else if(s3Height > s1Height && s3Height > s2Height && !s3.isEmpty()){
+				int pop = s3.remove(0);
+				s3Height -= pop;
+			}
+			if((s1Height == s2Height) && (s1Height== s3Height)){
+				isStackEqual = true;
+			}
+		}
+		return s1Height;
+	}
+
+	private static int height(Stack<Integer> s1) {
+		// TODO Auto-generated method stub
+		int height = 0;
+		for(int i=0; i < s1.size(); i++){
+			height += s1.get(i);
+		}
+		return height;
+	}
 }
