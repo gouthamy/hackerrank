@@ -6,9 +6,19 @@ public class DPCoinChange {
 
 	
 	//using dynamic programming
-	public static long makeChange(int[] coins, int money) {
-
-		return 0;
+	public static long makeChange(int[] coins, int money, int index) {
+		if(money == 0)
+			return 1;
+		if(index >= coins.length)
+			return 0;
+		int amountWithCoin = 0;
+		long ways = 0;
+		while(amountWithCoin <= money){
+			int rem = money - amountWithCoin;
+			ways += makeChange(coins, rem, index + 1);
+			amountWithCoin += coins[index];
+		}
+		return ways;
 	}
 
 	public static void main(String[] args) {
@@ -19,7 +29,7 @@ public class DPCoinChange {
 		for(int coins_i=0; coins_i < m; coins_i++){
 			coins[coins_i] = in.nextInt();
 		}
-		System.out.println(makeChange(coins, n));
+		System.out.println(makeChange(coins, n, 0));
 	}
 
 }

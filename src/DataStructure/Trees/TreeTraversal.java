@@ -131,7 +131,7 @@ public class TreeTraversal {
 class Node {
 	public Node(int value) {
 		// TODO Auto-generated constructor stub
-		this.data = data;
+		this.data = value;
 	}
 	int data;
 	Node left;

@@ -1,9 +1,12 @@
 package Algorithms.sorting;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class QuicksortPartition1 {
 
+	static HashMap<String,String> map = new HashMap<String,String>();
+	
 	static void partition(int[] ar) {
 		int temp=0;
 	    int pivot=ar[0];
@@ -30,6 +33,7 @@ public class QuicksortPartition1 {
 	}
 
 	public static void main(String[] args) {
+		
 		Scanner in = new Scanner(System.in);
 		int n = in.nextInt();
 		int[] ar = new int[n];
